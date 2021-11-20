@@ -1,0 +1,110 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-12" *ngIf="!this.form.value.id; else elseBlock">
+        <h3 class="fw-bold">Nuevo Contacto</h3>
+      </div>
+      <ng-template #elseBlock>
+        <h3 class="fw-bold">Editar Contacto</h3>
+      </ng-template>
+      <form (submit)="save()" autocomplete="off" [formGroup]="form">
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="d-block">
+            <mat-label>Nombre</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Nombre"
+              formControlName="nombre"
+            />
+            <mat-error *ngIf="form.controls.nombre.hasError('required')">
+              El nombre es requerido
+            </mat-error>
+            <mat-error *ngIf="form.controls.nombre.hasError('minlength')">
+              Debe tener al menos tres caractres
+            </mat-error>
+            <mat-error *ngIf="form.controls.nombre.hasError('maxlength')">
+              Debe tener 250 caracteres como máximo
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="d-block">
+            <mat-label>Apellido</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Apellido"
+              formControlName="apellido"
+            />
+            <mat-error *ngIf="form.controls.nombre.hasError('required')">
+              El nombre es requerido
+            </mat-error>
+            <mat-error *ngIf="form.controls.nombre.hasError('minlength')">
+              Debe tener al menos tres caractres
+            </mat-error>
+            <mat-error *ngIf="form.controls.nombre.hasError('maxlength')">
+              Debe tener 250 caracteres como máximo
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="d-block">
+            <mat-label>Celular</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="Celular"
+              formControlName="celular"
+            />
+            <mat-error *ngIf="form.controls.nombre.hasError('required')">
+              El nombre es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="d-block">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              type="email"
+              placeholder="Email"
+              formControlName="email"
+            />
+            <mat-error *ngIf="form.controls.email.hasError('required')">
+              El email es requerido
+            </mat-error>
+            <mat-error *ngIf="form.controls.email.hasError('email')">
+              Formato de email no valido
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-12">
+          <mat-form-field appearance="outline" class="d-block">
+            <mat-label>Dirección</mat-label>
+            <input
+              matInput
+              type="email"
+              placeholder="direccion"
+              formControlName="direccion"
+            />
+            <mat-error *ngIf="form.controls.nombre.hasError('required')">
+              El nombre es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="alert alert-danger" *ngIf="errors.length > 0">
+          <div *ngFor="let error of errors">
+            {{ error }}
+          </div>
+        </div>
+
+        <button mat-button routerLink="/admin">Cancelar</button>
+        <button mat-raised-button color="primary" class="ms-2">
+          {{ this.form.value.id != null ? "Editar" : "Crear" }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <span>Agenda</span>
+
+  <button mat-button routerLink="/admin" class="ms-2" *ngIf="islogin">
+    Contactos
+  </button>
+
+  <span class="spacer"></span>
+
+  <button mat-button [matMenuTriggerFor]="menu" *ngIf="islogin">
+    <mat-icon>account_circle</mat-icon> {{ user }}
+  </button>
+
+  <mat-menu #menu="matMenu" >
+    <button mat-menu-item (click)="logout()" >
+      <mat-icon>logout</mat-icon> Cerrar sesión
+    </button>
+  </mat-menu>
+</mat-toolbar>
+
+<div class="container p-5">
+  <router-outlet></router-outlet>
+</div>
